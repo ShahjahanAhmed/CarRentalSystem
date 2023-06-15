@@ -1,7 +1,6 @@
 ﻿using CarRentalSystem.Business.Exception;
 using CarRentalSystem.Business.Repository;
 using CarRentalSystem.Business.Service;
-using CarRentalSystem.Business.Utils;
 
 namespace CarRentalSystem.Business.Infrastructure
 {
@@ -12,7 +11,6 @@ namespace CarRentalSystem.Business.Infrastructure
         protected IocContainerBase()
         {
             RegisterSingleton<IPriceCalculationStrategyProvider>(new PriceByCategoryStrategyProvider());
-            RegisterSingleton(new BookingNumberGenerator());
         }
 
         protected void RegisterSingletonServices()

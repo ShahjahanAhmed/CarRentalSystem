@@ -1,8 +1,8 @@
 ﻿using CarRentalSystem.Business.Infrastructure;
 using CarRentalSystem.Business.Repository;
 using CarRentalSystem.Business.Service;
-using CarRentalSystem.Business.Utils;
 using CarRentalSystem.InMemoryRepository;
+using CarRentalSystem.InMemoryRepository.Utils;
 using CarRentalSystem.SampleConsoleApp.Presenter;
 using CarRentalSystem.SampleConsoleApp.View;
 
@@ -12,6 +12,7 @@ namespace CarRentalSystem.SampleConsoleApp.Infrastructure
     {
         public AppIocContainer()
         {
+            RegisterSingleton(new BookingNumberGenerator());
             RegisterSingleton(CreateDeliveryRepository());
             RegisterSingleton<IReturnRepository>(new ReturnRepository());
             RegisterSingletonServices();
