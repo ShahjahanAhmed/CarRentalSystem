@@ -1,19 +1,25 @@
-﻿using CarRentalSystem.Business.Service;
+﻿using CarRentalSystem.Business.Model;
+using CarRentalSystem.Business.Service;
 using CarRentalSystem.SampleConsoleApp.Infrastructure;
 using CarRentalSystem.SampleConsoleApp.Presenter;
+using CarRentalSystem.SampleConsoleApp.View;
+using Moq;
 
 namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
 {
     internal class DeliveryRegistrationPresenterTests
     {
         private readonly DeliveryRegistrationPresenter deliveryRegistrationPresenter;
+        private readonly Mock<IDeliveryRegistrationView> deliveryRegistrationViewMock;
 
         public DeliveryRegistrationPresenterTests()
         {
+            deliveryRegistrationViewMock = new Mock<IDeliveryRegistrationView>();
             var appIocContainer = new AppIocContainer();
             var deliveryRegistrationService = appIocContainer.GetSingletonInstance<IDeliveryRegistrationService>();
             var priceCalculationStrategyProvider = appIocContainer.GetSingletonInstance<IPriceCalculationStrategyProvider>();
             deliveryRegistrationPresenter = new DeliveryRegistrationPresenter(deliveryRegistrationService, priceCalculationStrategyProvider);
+            deliveryRegistrationPresenter.Bind(deliveryRegistrationViewMock.Object);
         }
 
         [Test]
@@ -25,16 +31,21 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             const int currentMeterReading = 100;
             var pickupTime = DateTime.Parse("2023-06-15T09:30");
 
-            var carDelivery = deliveryRegistrationPresenter.RegisterDelivery(carRegistrationNumber, socialSecurityNumber, carCategory,
+            CarDelivery registeredCarDelivery = null;
+
+            deliveryRegistrationViewMock.Setup(view => view.RenderCarDeliveryRegistration(It.IsAny<CarDelivery>()))
+                .Callback((CarDelivery carDelivery) => registeredCarDelivery = carDelivery);
+
+            deliveryRegistrationPresenter.RegisterDelivery(carRegistrationNumber, socialSecurityNumber, carCategory,
                 pickupTime, currentMeterReading);
 
-            Assert.That(carDelivery.BookingNumber, Is.EqualTo(1));
-            Assert.That(carDelivery.CarCategory, Is.EqualTo(carCategory));
-            Assert.That(carDelivery.CarRegistration, Is.EqualTo(carRegistrationNumber));
-            Assert.That(carDelivery.MeterReadingAtDelivery, Is.EqualTo(currentMeterReading));
-            Assert.That(carDelivery.PickupTime, Is.EqualTo(pickupTime));
-            Assert.That(carDelivery.SocialSecurityNumber, Is.EqualTo(socialSecurityNumber));
-            Assert.That(carDelivery.SocialSecurityNumber, Is.EqualTo(socialSecurityNumber));
+            Assert.That(registeredCarDelivery.BookingNumber, Is.EqualTo(1));
+            Assert.That(registeredCarDelivery.CarCategory, Is.EqualTo(carCategory));
+            Assert.That(registeredCarDelivery.CarRegistration, Is.EqualTo(carRegistrationNumber));
+            Assert.That(registeredCarDelivery.MeterReadingAtDelivery, Is.EqualTo(currentMeterReading));
+            Assert.That(registeredCarDelivery.PickupTime, Is.EqualTo(pickupTime));
+            Assert.That(registeredCarDelivery.SocialSecurityNumber, Is.EqualTo(socialSecurityNumber));
+            Assert.That(registeredCarDelivery.SocialSecurityNumber, Is.EqualTo(socialSecurityNumber));
         }
     }
 }

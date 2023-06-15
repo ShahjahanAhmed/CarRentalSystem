@@ -1,11 +1,13 @@
 ﻿using CarRentalSystem.Business.Exception;
 using CarRentalSystem.Business.Model;
 using CarRentalSystem.Business.Repository;
+using NLog;
 
 namespace CarRentalSystem.Business.Service
 {
     internal class ReturnRegistrationService : IReturnRegistrationService
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IDeliveryRepository deliveryRepository;
         private readonly IReturnRepository returnRepository;
 
@@ -29,13 +31,18 @@ namespace CarRentalSystem.Business.Service
                 throw new EntryNotFoundException($"Rental with booking number {bookingNumber} not found.");
             }
 
+            logger.Debug($"Registering car return with booking number {bookingNumber}...");
+
             var newCarReturn = new CarReturn(bookingNumber)
             {
                 ReturnTime = returnTime,
                 MeterReadingAtReturn = currentMeterReading
             };
 
-            return returnRepository.Create(newCarReturn);
+            var registerReturnOfCar = returnRepository.Create(newCarReturn);
+            logger.Debug($"Car return registration with booking number {bookingNumber} is done.");
+
+            return registerReturnOfCar;
         }
     }
 }

@@ -24,7 +24,6 @@ namespace CarRentalSystem.SampleConsoleApp.View
             var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading: ");
 
             presenter.RegisterReturnOfCar(bookingNumber, returnTime, currentMeterReading);
-            AnsiConsole.MarkupLine($"[green]Car return registration successful! [/] ");
         }
 
         private static void RenderCarDeliveryRegistration(RentalSummary rentalSummary)
@@ -58,6 +57,13 @@ namespace CarRentalSystem.SampleConsoleApp.View
         {
             AnsiConsole.WriteLine();
             RenderCarDeliveryRegistration(rentalSummary);
+        }
+
+        public void ShowError(string message)
+        {
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"[bold red] {message} [/] ");
+            AnsiConsole.WriteLine();
         }
     }
 }

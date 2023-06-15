@@ -31,9 +31,11 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             const int meterReadingAtDelivery = 100;
             var pickupTime = DateTime.Parse("2023-06-15T09:30");
 
+            var deliveryRegistrationViewMock = new Mock<IDeliveryRegistrationView>();
             var deliveryRegistrationService = appIocContainer.GetSingletonInstance<IDeliveryRegistrationService>();
             var priceCalculationStrategyProvider = appIocContainer.GetSingletonInstance<IPriceCalculationStrategyProvider>();
             var deliveryRegistrationPresenter = new DeliveryRegistrationPresenter(deliveryRegistrationService, priceCalculationStrategyProvider);
+            deliveryRegistrationPresenter.Bind(deliveryRegistrationViewMock.Object);
 
             deliveryRegistrationPresenter.RegisterDelivery(carRegistrationNumber, socialSecurityNumber, "Small car", pickupTime, meterReadingAtDelivery);
             deliveryRegistrationPresenter.RegisterDelivery(carRegistrationNumber, socialSecurityNumber, "Combi", pickupTime, meterReadingAtDelivery);
@@ -55,15 +57,9 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             RentalSummary? rentalSummary = null;
 
             returnRegistrationViewMock.Setup(view => view.PromptPriceFactorsFromUser(It.IsAny<CarReturn>()))
-                .Callback((CarReturn carReturn) =>
-                {
-                    registeredCarReturn = carReturn;
-                });
+                .Callback((CarReturn carReturn) => registeredCarReturn = carReturn);
             returnRegistrationViewMock.Setup(view => view.ShowSummary(It.IsAny<RentalSummary>()))
-                .Callback((RentalSummary summary) =>
-                {
-                    rentalSummary = summary;
-                });
+                .Callback((RentalSummary summary) => rentalSummary = summary);
 
             returnRegistrationPresenter.RegisterReturnOfCar(expectedBookingNumber, expectedReturnTime, meterReadingAtReturn);
 
