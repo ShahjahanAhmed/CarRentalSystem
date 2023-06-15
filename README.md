@@ -38,10 +38,11 @@ Run build.bat file which builds the whole solution and runs all the unit tests.
 A CarRentalSystem.log file is generated under CarRentalSystem\CarRentalSystem.SampleConsoleApp\bin\$(Configuration)\net6.0\
 folder whereas the $(Configuration) is either Debug or Release.
 
-## To test the system
-Build the solution either using build.bat file or using an IDE. Run \CarRentalSystem\CarRentalSystem.SampleConsoleApp\bin\$(Configuration)\net6.0\CarRentalSystem.SampleConsoleApp.exe.
-When options are presented, press keyboard up/down key to navigate and enter to select an option.
+## How to test
+Build the solution either using _build.bat_ file or using an IDE. Run \CarRentalSystem\CarRentalSystem.SampleConsoleApp\bin\$(Configuration)\net6.0\CarRentalSystem.SampleConsoleApp.exe.
+When options are presented in the console, press keyboard up/down key to navigate between options and press Enter to 
+select an option. Example date time format to use for pick up time or return time is (yyyy'-'MM'-'dd'T'HH':'mm') e.g. 2023-06-18T11:30.
 
 ## Remarks
 As the main requirement of the test is to implement small part of the business logic hence implementation of a proper
-web interface, proper server and proper database communication are skipped to save some time.
+web interface, proper server and proper database communication are skipped to save some time. 
