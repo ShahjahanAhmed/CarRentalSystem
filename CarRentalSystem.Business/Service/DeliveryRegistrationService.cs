@@ -26,6 +26,8 @@ namespace CarRentalSystem.Business.Service
                 throw new CategoryNotSupportedException(carCategory);
             }
 
+            ValidatePickupTime(pickupTime);
+
             logger.Debug($"Registering delivery with registration number {carRegistrationNumber}");
             var newCarDelivery = new CarDelivery(carRegistrationNumber)
             {
@@ -56,6 +58,8 @@ namespace CarRentalSystem.Business.Service
                 throw new CategoryNotSupportedException(carCategory);
             }
 
+            ValidatePickupTime(pickupTime);
+
             logger.Debug($"Update delivery registration with booking number {bookingNumber}");
 
             carDelivery.CarCategory = carCategory;
@@ -67,7 +71,14 @@ namespace CarRentalSystem.Business.Service
             deliveryRepository.Update(carDelivery);
 
             logger.Debug($"Updating delivery registration with booking number {bookingNumber} is done.");
+        }
 
+        private static void ValidatePickupTime(DateTime pickupTime)
+        {
+            if (pickupTime < DateTime.Now)
+            {
+                throw new InvalidInputDataException("Pick time must be later than the current time.");
+            }
         }
     }
 }
