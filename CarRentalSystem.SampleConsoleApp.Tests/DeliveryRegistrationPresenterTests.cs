@@ -7,6 +7,7 @@ using Moq;
 
 namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
 {
+    [TestFixture]
     internal class DeliveryRegistrationPresenterTests
     {
         private readonly DeliveryRegistrationPresenter deliveryRegistrationPresenter;

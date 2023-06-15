@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.Tests", "CarRentalSystem.Tests\CarRentalSystem.Tests.csproj", "{2F6479FF-5698-46E6-A09C-0E9169B70020}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.Business", "CarRentalSystem.Business\CarRentalSystem.Business.csproj", "{A6EBE6A8-9E27-4E26-A3C9-35291E5A42D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.SampleConsoleApp", "CarRentalSystem.SampleConsoleApp\CarRentalSystem.SampleConsoleApp.csproj", "{DA38C22B-AB2C-4F90-8EBC-215185FD348A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem.InMemoryRepository", "CarRentalSystem.InMemoryRepository\CarRentalSystem.InMemoryRepository.csproj", "{96FFC1E4-7922-4138-942B-1A73AD057EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.InMemoryRepository", "CarRentalSystem.InMemoryRepository\CarRentalSystem.InMemoryRepository.csproj", "{96FFC1E4-7922-4138-942B-1A73AD057EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem.SampleConsoleApp.IntegrationTests", "CarRentalSystem.SampleConsoleApp.Tests\CarRentalSystem.SampleConsoleApp.IntegrationTests.csproj", "{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.SampleConsoleApp.IntegrationTests", "CarRentalSystem.SampleConsoleApp.Tests\CarRentalSystem.SampleConsoleApp.IntegrationTests.csproj", "{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem.Business.Tests", "CarRentalSystem.Business.Tests\CarRentalSystem.Business.Tests.csproj", "{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2F6479FF-5698-46E6-A09C-0E9169B70020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F6479FF-5698-46E6-A09C-0E9169B70020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F6479FF-5698-46E6-A09C-0E9169B70020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F6479FF-5698-46E6-A09C-0E9169B70020}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A6EBE6A8-9E27-4E26-A3C9-35291E5A42D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A6EBE6A8-9E27-4E26-A3C9-35291E5A42D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6EBE6A8-9E27-4E26-A3C9-35291E5A42D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
