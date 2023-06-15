@@ -21,7 +21,7 @@ namespace CarRentalSystem.SampleConsoleApp.View
 
             var bookingNumber = AnsiConsole.Ask<long>("Booking number: ");
             var returnTime = AnsiConsole.Ask<DateTime>("Return time (yyyy'-'MM'-'dd'T'HH':'mm'): ");
-            var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading: ");
+            var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading (km): ");
 
             presenter.RegisterReturnOfCar(bookingNumber, returnTime, currentMeterReading);
         }
