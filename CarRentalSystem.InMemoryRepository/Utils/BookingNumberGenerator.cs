@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Business.Utils
+﻿namespace CarRentalSystem.InMemoryRepository.Utils
 {
     public class BookingNumberGenerator
     {

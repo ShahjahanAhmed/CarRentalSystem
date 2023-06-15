@@ -1,6 +1,6 @@
 ﻿using CarRentalSystem.Business.Model;
 using CarRentalSystem.Business.Repository;
-using CarRentalSystem.Business.Utils;
+using CarRentalSystem.InMemoryRepository.Utils;
 
 namespace CarRentalSystem.InMemoryRepository
 {
