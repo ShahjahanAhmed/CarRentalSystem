@@ -4,7 +4,7 @@ using CarRentalSystem.Business.Repository;
 
 namespace CarRentalSystem.Business.Service
 {
-    public class ReturnRegistrationService
+    internal class ReturnRegistrationService : IReturnRegistrationService
     {
         private readonly IDeliveryRepository deliveryRepository;
         private readonly IReturnRepository returnRepository;

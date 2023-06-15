@@ -4,18 +4,18 @@ using CarRentalSystem.Business.Repository;
 
 namespace CarRentalSystem.Business.Service
 {
-    public class RentalSummaryGeneratorService
+    internal class RentalSummaryGeneratorService : IRentalSummaryGeneratorService
     {
         private readonly IDeliveryRepository deliveryRepository;
         private readonly IReturnRepository returnRepository;
-        private readonly PriceByCategoryStrategyProvider priceByCategoryStrategyProvider;
+        private readonly IPriceCalculationStrategyProvider priceCalculationStrategyProvider;
 
         public RentalSummaryGeneratorService(IDeliveryRepository deliveryRepository, IReturnRepository returnRepository,
-            PriceByCategoryStrategyProvider priceByCategoryStrategyProvider)
+            IPriceCalculationStrategyProvider priceCalculationStrategyProvider)
         {
             this.deliveryRepository = deliveryRepository;
             this.returnRepository = returnRepository;
-            this.priceByCategoryStrategyProvider = priceByCategoryStrategyProvider;
+            this.priceCalculationStrategyProvider = priceCalculationStrategyProvider;
         }
 
         public RentalSummary GenerateSummary(long bookingNumber, int baseDayRental, int baseKmPrice)
@@ -55,7 +55,7 @@ namespace CarRentalSystem.Business.Service
             var numberOfKmDriven = CalculateNumberOfKm(carReturn, carDelivery);
             var priceFactors = new PriceFactors(baseDayRental, baseKmPrice, numberOfDays, numberOfKmDriven);
 
-            var carPriceStrategy = priceByCategoryStrategyProvider.GetPriceStrategy(carDelivery.CarCategory);
+            var carPriceStrategy = priceCalculationStrategyProvider.GetPriceStrategy(carDelivery.CarCategory);
             if (carPriceStrategy == null)
             {
                 throw new CategoryNotSupportedException(carDelivery.CarCategory);

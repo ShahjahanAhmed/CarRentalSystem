@@ -4,11 +4,11 @@ using Spectre.Console;
 
 namespace CarRentalSystem.SampleConsoleApp.View
 {
-    public class DeliveryRegistrationView
+    internal class DeliveryRegistrationView : IView
     {
-        private readonly DeliveryRegistrationPresenter presenter;
+        private readonly IDeliveryRegistrationPresenter presenter;
 
-        public DeliveryRegistrationView(DeliveryRegistrationPresenter presenter)
+        public DeliveryRegistrationView(IDeliveryRegistrationPresenter presenter)
         {
             this.presenter = presenter;
         }

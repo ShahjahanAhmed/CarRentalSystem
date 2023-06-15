@@ -4,21 +4,21 @@ using CarRentalSystem.Business.Repository;
 
 namespace CarRentalSystem.Business.Service
 {
-    public class DeliveryRegistrationService
+    internal class DeliveryRegistrationService : IDeliveryRegistrationService
     {
-        private readonly PriceByCategoryStrategyProvider priceByCategoryStrategyProvider;
+        private readonly IPriceCalculationStrategyProvider priceCalculationStrategyProvider;
         private readonly IDeliveryRepository deliveryRepository;
 
-        public DeliveryRegistrationService(PriceByCategoryStrategyProvider priceByCategoryStrategyProvider, IDeliveryRepository deliveryRepository)
+        public DeliveryRegistrationService(IPriceCalculationStrategyProvider priceCalculationStrategyProvider, IDeliveryRepository deliveryRepository)
         {
-            this.priceByCategoryStrategyProvider = priceByCategoryStrategyProvider;
+            this.priceCalculationStrategyProvider = priceCalculationStrategyProvider;
             this.deliveryRepository = deliveryRepository;
         }
 
         public CarDelivery RegisterCarDelivery(string carRegistrationNumber, string socialSecurityNumber,
             string carCategory, DateTime pickupTime, int currentMeterReading)
         {
-            var carPriceStrategy = priceByCategoryStrategyProvider.GetPriceStrategy(carCategory);
+            var carPriceStrategy = priceCalculationStrategyProvider.GetPriceStrategy(carCategory);
             if (carPriceStrategy == null)
             {
                 throw new CategoryNotSupportedException(carCategory);
@@ -44,7 +44,7 @@ namespace CarRentalSystem.Business.Service
                 throw new EntryNotFoundException($"Car delivery registration with booking number {bookingNumber} not found.");
             }
 
-            var priceStrategy = priceByCategoryStrategyProvider.GetPriceStrategy(carCategory);
+            var priceStrategy = priceCalculationStrategyProvider.GetPriceStrategy(carCategory);
             if (priceStrategy == null)
             {
                 throw new CategoryNotSupportedException(carCategory);

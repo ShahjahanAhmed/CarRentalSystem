@@ -4,11 +4,11 @@ using Spectre.Console;
 
 namespace CarRentalSystem.SampleConsoleApp.View
 {
-    public class ReturnRegistrationView : IReturnRegistrationView
+    internal class ReturnRegistrationView : IReturnRegistrationView
     {
-        private readonly ReturnRegistrationPresenter presenter;
+        private readonly IReturnRegistrationPresenter presenter;
 
-        public ReturnRegistrationView(ReturnRegistrationPresenter presenter)
+        public ReturnRegistrationView(IReturnRegistrationPresenter presenter)
         {
             this.presenter = presenter;
             this.presenter.Bind(this);

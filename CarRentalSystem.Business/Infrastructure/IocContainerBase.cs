@@ -1,35 +1,36 @@
 ﻿using CarRentalSystem.Business.Exception;
-using CarRentalSystem.Business.Model;
 using CarRentalSystem.Business.Repository;
 using CarRentalSystem.Business.Service;
 using CarRentalSystem.Business.Utils;
 
 namespace CarRentalSystem.Business.Infrastructure
 {
-    public class IocContainer
+    public abstract class IocContainerBase
     {
         private readonly Dictionary<Type, object> singletonInstances = new();
 
-        public IocContainer()
+        protected IocContainerBase()
         {
-            RegisterSingleton(new PriceByCategoryStrategyProvider());
+            RegisterSingleton<IPriceCalculationStrategyProvider>(new PriceByCategoryStrategyProvider());
             RegisterSingleton(new BookingNumberGenerator());
-            RegisterSingleton<IDeliveryRepository>(CreateDeliveryRepository());
-            RegisterSingleton<IReturnRepository>(new ReturnRepository());
+        }
+
+        protected void RegisterSingletonServices()
+        {
             RegisterSingleton(CreateDeliveryRegistrationService());
             RegisterSingleton(CreateReturnRegistrationService());
             RegisterSingleton(CreateRentalPriceCalculationService());
         }
 
-        private RentalSummaryGeneratorService CreateRentalPriceCalculationService()
+        private IRentalSummaryGeneratorService CreateRentalPriceCalculationService()
         {
             var deliveryRepository = GetSingletonInstance<IDeliveryRepository>();
             var returnRepository = GetSingletonInstance<IReturnRepository>();
-            var priceByCategoryStrategyProvider = GetSingletonInstance<PriceByCategoryStrategyProvider>();
+            var priceByCategoryStrategyProvider = GetSingletonInstance<IPriceCalculationStrategyProvider>();
             return new RentalSummaryGeneratorService(deliveryRepository, returnRepository, priceByCategoryStrategyProvider);
         }
 
-        private ReturnRegistrationService CreateReturnRegistrationService()
+        private IReturnRegistrationService CreateReturnRegistrationService()
         {
             var deliveryRepository = GetSingletonInstance<IDeliveryRepository>();
             var returnRepository = GetSingletonInstance<IReturnRepository>();
@@ -37,17 +38,11 @@ namespace CarRentalSystem.Business.Infrastructure
             return new ReturnRegistrationService(deliveryRepository, returnRepository);
         }
 
-        private DeliveryRegistrationService CreateDeliveryRegistrationService()
+        private IDeliveryRegistrationService CreateDeliveryRegistrationService()
         {
-            var carCategoryProvider = GetSingletonInstance<PriceByCategoryStrategyProvider>();
+            var carCategoryProvider = GetSingletonInstance<IPriceCalculationStrategyProvider>();
             var deliveryRepository = GetSingletonInstance<IDeliveryRepository>();
             return new DeliveryRegistrationService(carCategoryProvider, deliveryRepository);
-        }
-
-        private DeliveryRepository CreateDeliveryRepository()
-        {
-            var bookingNumberGenerator = GetSingletonInstance<BookingNumberGenerator>();
-            return new DeliveryRepository(bookingNumberGenerator);
         }
 
         public void RegisterSingleton<T>(T instance)

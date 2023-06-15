@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace CarRentalSystem.SampleConsoleApp.View
 {
-    public class MainView
+    internal class MainView : IView
     {
         private readonly IAppIocContainer iocContainer;
 
