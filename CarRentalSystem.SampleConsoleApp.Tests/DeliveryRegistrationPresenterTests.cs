@@ -29,7 +29,7 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             const string carCategory = "Small car";
             const string carRegistrationNumber = "BDF342";
             const int currentMeterReading = 100;
-            var pickupTime = DateTime.Parse("2023-06-15T09:30");
+            var pickupTime = DateTime.Now + TimeSpan.FromMinutes(10);
 
             CarDelivery registeredCarDelivery = null;
 

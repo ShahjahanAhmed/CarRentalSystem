@@ -20,10 +20,7 @@ namespace CarRentalSystem.Business.Service
 
         public RentalSummary GenerateSummary(long bookingNumber, int baseDayRental, int baseKmPrice)
         {
-            if (bookingNumber <= 0)
-            {
-                throw new ArgumentException("Booking number must be greater than 0.");
-            }
+            ValidateBookingNumber(bookingNumber);
 
             var carDelivery = deliveryRepository.Get(bookingNumber);
             if (carDelivery == null)
@@ -47,6 +44,14 @@ namespace CarRentalSystem.Business.Service
                 NumberOfKm = numberOfKmDriven,
                 TotalPrice = totalPrice
             };
+        }
+
+        private static void ValidateBookingNumber(long bookingNumber)
+        {
+            if (bookingNumber <= 0)
+            {
+                throw new InvalidInputDataException("Booking number must be greater than 0.");
+            }
         }
 
         private double CalculatePrice(CarDelivery carDelivery, CarReturn carReturn, int baseDayRental, int baseKmPrice)

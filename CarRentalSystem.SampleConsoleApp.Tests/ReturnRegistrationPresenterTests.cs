@@ -29,7 +29,7 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             const string socialSecurityNumber = "19891212-4123";
             const string carRegistrationNumber = "BDF342";
             const int meterReadingAtDelivery = 100;
-            var pickupTime = DateTime.Parse("2023-06-15T09:30");
+            var pickupTime = DateTime.Now + TimeSpan.FromMinutes(10);
 
             var deliveryRegistrationViewMock = new Mock<IDeliveryRegistrationView>();
             var deliveryRegistrationService = appIocContainer.GetSingletonInstance<IDeliveryRegistrationService>();
@@ -51,7 +51,7 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
             var baseKmPrice = 2;
 
             var meterReadingAtReturn = 200;
-            var expectedReturnTime = DateTime.Parse("2023-06-17T11:30");
+            var expectedReturnTime = DateTime.Now + TimeSpan.FromDays(2) + TimeSpan.FromMinutes(10); ;
 
             CarReturn? registeredCarReturn = null;
             RentalSummary? rentalSummary = null;

@@ -29,8 +29,7 @@ namespace CarRentalSystem.SampleConsoleApp.Presenter
             CarReturn registeredCarReturn = null;
             try
             {
-                registeredCarReturn =
-                    returnRegistrationService.RegisterReturnOfCar(bookingNumber, returnTime, currentMeterReading);
+                registeredCarReturn = returnRegistrationService.RegisterReturnOfCar(bookingNumber, returnTime, currentMeterReading);
 
             }
             catch (Exception e)
