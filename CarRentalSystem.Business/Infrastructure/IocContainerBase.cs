@@ -4,6 +4,9 @@ using CarRentalSystem.Business.Service;
 
 namespace CarRentalSystem.Business.Infrastructure
 {
+    /// <summary>
+    /// A base implementation of an Inversion of Control container to implement a simple dependency injection.
+    /// </summary>
     public abstract class IocContainerBase
     {
         private readonly Dictionary<Type, object> singletonInstances = new();

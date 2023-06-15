@@ -2,6 +2,9 @@
 
 namespace CarRentalSystem.Business.Repository;
 
+/// <summary>
+/// Provides contracts for doing CRUD operations for car return registration into a database.
+/// </summary>
 public interface IReturnRepository
 {
     CarReturn? Get(long bookingNumber);

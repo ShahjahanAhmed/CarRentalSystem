@@ -30,11 +30,9 @@ namespace CarRentalSystem.SampleConsoleApp.View
 
 
             var pickupTime = AnsiConsole.Ask<DateTime>("Pickup time (yyyy'-'MM'-'dd'T'HH':'mm'): ");
-            var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading: ");
+            var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading (km): ");
 
             presenter.RegisterDelivery(registration, socialSecurity, selectedCarCategory, pickupTime, currentMeterReading);
-
-        
         }
 
         public void RenderCarDeliveryRegistration(CarDelivery registeredDelivery)

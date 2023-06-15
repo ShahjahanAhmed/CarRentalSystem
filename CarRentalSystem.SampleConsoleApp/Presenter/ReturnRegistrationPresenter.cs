@@ -5,6 +5,9 @@ using NLog;
 
 namespace CarRentalSystem.SampleConsoleApp.Presenter
 {
+    /// <summary>
+    /// Provides presentation logic for car return registration and price calculation.
+    /// </summary>
     internal class ReturnRegistrationPresenter : IReturnRegistrationPresenter
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();

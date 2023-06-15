@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.SampleConso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.InMemoryRepository", "CarRentalSystem.InMemoryRepository\CarRentalSystem.InMemoryRepository.csproj", "{96FFC1E4-7922-4138-942B-1A73AD057EC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.SampleConsoleApp.IntegrationTests", "CarRentalSystem.SampleConsoleApp.Tests\CarRentalSystem.SampleConsoleApp.IntegrationTests.csproj", "{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.Business.Tests", "CarRentalSystem.Business.Tests\CarRentalSystem.Business.Tests.csproj", "{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalSystem.Business.Tests", "CarRentalSystem.Business.Tests\CarRentalSystem.Business.Tests.csproj", "{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarRentalSystem.SampleConsoleApp.IntegrationTests", "CarRentalSystem.SampleConsoleApp.IntegrationTests\CarRentalSystem.SampleConsoleApp.IntegrationTests.csproj", "{7F35C0B3-CA01-4E95-84CF-369DC4973C5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{96FFC1E4-7922-4138-942B-1A73AD057EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FFC1E4-7922-4138-942B-1A73AD057EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FFC1E4-7922-4138-942B-1A73AD057EC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1ABC9D95-814C-4C48-B9AF-94FB0A6E0D79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB6AE09-D1DB-44F2-90FD-CE3CA5855F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F35C0B3-CA01-4E95-84CF-369DC4973C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F35C0B3-CA01-4E95-84CF-369DC4973C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F35C0B3-CA01-4E95-84CF-369DC4973C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F35C0B3-CA01-4E95-84CF-369DC4973C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
