@@ -1,4 +1,4 @@
-namespace CarRentalSystem.Tests
+namespace CarRentalSystem.Business.Tests
 {
     public class Tests
     {

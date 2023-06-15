@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("8c7772df-ea95-4aca-bc68-67b66adcc647")]
 [assembly: InternalsVisibleTo("CarRentalSystem.SampleConsoleApp.IntegrationTests")]
+[assembly: InternalsVisibleTo("CarRentalSystem.Business.Tests")]

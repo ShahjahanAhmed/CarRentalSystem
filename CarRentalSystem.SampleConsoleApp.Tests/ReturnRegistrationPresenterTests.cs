@@ -7,6 +7,7 @@ using Moq;
 
 namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
 {
+    [TestFixture]
     internal class ReturnRegistrationPresenterTests
     {
         private readonly ReturnRegistrationPresenter returnRegistrationPresenter;
@@ -47,10 +48,9 @@ namespace CarRentalSystem.SampleConsoleApp.IntegrationTests
         [TestCase(3, 600d)]
         public void TestSummaryGeneration_WhenCarDeliveryRegistrationsExistsForDifferentCarCategory_SummaryShouldHaveExpectedData(long expectedBookingNumber, double expectedTotalPrice)
         {
-            var baseDayRental = 100;
-            var baseKmPrice = 2;
-
-            var meterReadingAtReturn = 200;
+            const int baseDayRental = 100;
+            const int baseKmPrice = 2;
+            const int meterReadingAtReturn = 200;
             var expectedReturnTime = DateTime.Now + TimeSpan.FromDays(2) + TimeSpan.FromMinutes(10); ;
 
             CarReturn? registeredCarReturn = null;
