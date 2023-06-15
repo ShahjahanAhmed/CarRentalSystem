@@ -1,39 +1,54 @@
 ﻿using CarRentalSystem.Business.Infrastructure;
-using CarRentalSystem.Business.Model;
+using CarRentalSystem.Business.Repository;
 using CarRentalSystem.Business.Service;
+using CarRentalSystem.Business.Utils;
+using CarRentalSystem.InMemoryRepository;
 using CarRentalSystem.SampleConsoleApp.Presenter;
 using CarRentalSystem.SampleConsoleApp.View;
 
 namespace CarRentalSystem.SampleConsoleApp.Infrastructure
 {
-    public class AppIocContainer : IocContainer, IAppIocContainer
+    internal class AppIocContainer : IocContainerBase, IAppIocContainer
     {
-        public DeliveryRegistrationView CreateDeliveryRegistrationView()
+        public AppIocContainer()
+        {
+            RegisterSingleton(CreateDeliveryRepository());
+            RegisterSingleton<IReturnRepository>(new ReturnRepository());
+            RegisterSingletonServices();
+        }
+
+        private IDeliveryRepository CreateDeliveryRepository()
+        {
+            var bookingNumberGenerator = GetSingletonInstance<BookingNumberGenerator>();
+            return new DeliveryRepository(bookingNumberGenerator);
+        }
+
+        public IView CreateDeliveryRegistrationView()
         {
             return new DeliveryRegistrationView(CreateDeliveryRegistrationPresenter());
         }
 
-        public ReturnRegistrationView CreateReturnRegistrationView()
+        public IReturnRegistrationView CreateReturnRegistrationView()
         {
             return new ReturnRegistrationView(CreateReturnRegistrationPresenter());
         }
 
-        private DeliveryRegistrationPresenter CreateDeliveryRegistrationPresenter()
+        private IDeliveryRegistrationPresenter CreateDeliveryRegistrationPresenter()
         {
-            var deliveryRegistrationService = GetSingletonInstance<DeliveryRegistrationService>();
-            var priceByCategoryStrategyProvider = GetSingletonInstance<PriceByCategoryStrategyProvider>();
+            var deliveryRegistrationService = GetSingletonInstance<IDeliveryRegistrationService>();
+            var priceByCategoryStrategyProvider = GetSingletonInstance<IPriceCalculationStrategyProvider>();
             return new DeliveryRegistrationPresenter(deliveryRegistrationService, priceByCategoryStrategyProvider);
         }
 
-        private ReturnRegistrationPresenter CreateReturnRegistrationPresenter()
+        private IReturnRegistrationPresenter CreateReturnRegistrationPresenter()
         {
-            var returnRegistrationService = GetSingletonInstance<ReturnRegistrationService>();
-            var rentalPriceCalculationService = GetSingletonInstance<RentalSummaryGeneratorService>();
+            var returnRegistrationService = GetSingletonInstance<IReturnRegistrationService>();
+            var rentalPriceCalculationService = GetSingletonInstance<IRentalSummaryGeneratorService>();
 
             return new ReturnRegistrationPresenter(returnRegistrationService, rentalPriceCalculationService);
         }
 
-        public MainView CreateMainView()
+        public IView CreateMainView()
         {
             return new MainView(this);
         }

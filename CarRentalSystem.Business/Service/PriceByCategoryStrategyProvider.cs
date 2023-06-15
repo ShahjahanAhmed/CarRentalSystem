@@ -1,6 +1,8 @@
-﻿namespace CarRentalSystem.Business.Model
+﻿using CarRentalSystem.Business.Model;
+
+namespace CarRentalSystem.Business.Service
 {
-    public class PriceByCategoryStrategyProvider
+    internal class PriceByCategoryStrategyProvider : IPriceCalculationStrategyProvider
     {
         private readonly Dictionary<string, CarPriceStrategy> priceStrategies = new();
 
@@ -10,7 +12,8 @@
             RegisterStrategy("Combi", factors => factors.BaseDayRental * factors.NumberOfDays * 1.3 + factors.BaseKmPrice * factors.NumberOfKm);
             RegisterStrategy("Truck", factors => factors.BaseDayRental * factors.NumberOfDays * 1.5 + factors.BaseKmPrice * factors.NumberOfKm * 1.5);
         }
-        public void RegisterStrategy(string categoryName, Func<PriceFactors, double> priceStrategy)
+
+        private void RegisterStrategy(string categoryName, Func<PriceFactors, double> priceStrategy)
         {
             priceStrategies.Add(categoryName, new CarPriceStrategy(priceStrategy));
         }

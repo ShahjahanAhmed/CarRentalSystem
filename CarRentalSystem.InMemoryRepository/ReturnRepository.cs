@@ -1,6 +1,7 @@
 ﻿using CarRentalSystem.Business.Model;
+using CarRentalSystem.Business.Repository;
 
-namespace CarRentalSystem.Business.Repository
+namespace CarRentalSystem.InMemoryRepository
 {
     public class ReturnRepository : IReturnRepository
     {

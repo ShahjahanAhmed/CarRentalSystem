@@ -3,15 +3,15 @@ using CarRentalSystem.Business.Service;
 
 namespace CarRentalSystem.SampleConsoleApp.Presenter
 {
-    public class DeliveryRegistrationPresenter
+    internal class DeliveryRegistrationPresenter : IDeliveryRegistrationPresenter
     {
-        private readonly DeliveryRegistrationService deliveryRegistrationService;
-        private readonly PriceByCategoryStrategyProvider priceByCategoryStrategyProvider;
+        private readonly IDeliveryRegistrationService deliveryRegistrationService;
+        private readonly IPriceCalculationStrategyProvider priceCalculationStrategyProvider;
 
-        public DeliveryRegistrationPresenter(DeliveryRegistrationService deliveryRegistrationService, PriceByCategoryStrategyProvider priceByCategoryStrategyProvider)
+        public DeliveryRegistrationPresenter(IDeliveryRegistrationService deliveryRegistrationService, IPriceCalculationStrategyProvider priceCalculationStrategyProvider)
         {
             this.deliveryRegistrationService = deliveryRegistrationService;
-            this.priceByCategoryStrategyProvider = priceByCategoryStrategyProvider;
+            this.priceCalculationStrategyProvider = priceCalculationStrategyProvider;
         }
 
         public CarDelivery RegisterDelivery(string carRegistrationNumber, string socialSecurityNumber, 
@@ -20,6 +20,6 @@ namespace CarRentalSystem.SampleConsoleApp.Presenter
             return deliveryRegistrationService.RegisterCarDelivery(carRegistrationNumber, socialSecurityNumber, carCategory, pickupTime, currentMeterReading);
         }
 
-        public IReadOnlyCollection<string> SupportedCarCategories => priceByCategoryStrategyProvider.SupportedCarCategories;
+        public IReadOnlyCollection<string> SupportedCarCategories => priceCalculationStrategyProvider.SupportedCarCategories;
     }
 }

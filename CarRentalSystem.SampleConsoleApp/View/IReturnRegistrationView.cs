@@ -2,7 +2,7 @@
 
 namespace CarRentalSystem.SampleConsoleApp.View;
 
-public interface IReturnRegistrationView
+internal interface IReturnRegistrationView : IView
 {
     void PromptPriceFactorsFromUser(CarReturn registeredCarReturn);
     void ShowSummary(RentalSummary rentalSummary);

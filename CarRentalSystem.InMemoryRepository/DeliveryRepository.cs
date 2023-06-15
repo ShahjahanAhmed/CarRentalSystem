@@ -1,7 +1,8 @@
 ﻿using CarRentalSystem.Business.Model;
+using CarRentalSystem.Business.Repository;
 using CarRentalSystem.Business.Utils;
 
-namespace CarRentalSystem.Business.Repository
+namespace CarRentalSystem.InMemoryRepository
 {
     public class DeliveryRepository : IDeliveryRepository
     {

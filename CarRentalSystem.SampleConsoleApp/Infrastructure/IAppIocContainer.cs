@@ -2,10 +2,10 @@
 
 namespace CarRentalSystem.SampleConsoleApp.Infrastructure
 {
-    public interface IAppIocContainer
+    internal interface IAppIocContainer
     {
-        DeliveryRegistrationView CreateDeliveryRegistrationView();
-        MainView CreateMainView();
-        ReturnRegistrationView CreateReturnRegistrationView();
+        IView CreateDeliveryRegistrationView();
+        IView CreateMainView();
+        IReturnRegistrationView CreateReturnRegistrationView();
     }
 }

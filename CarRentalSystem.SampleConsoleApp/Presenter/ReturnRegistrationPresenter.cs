@@ -4,13 +4,13 @@ using CarRentalSystem.SampleConsoleApp.View;
 
 namespace CarRentalSystem.SampleConsoleApp.Presenter
 {
-    public class ReturnRegistrationPresenter
+    internal class ReturnRegistrationPresenter : IReturnRegistrationPresenter
     {
-        private readonly ReturnRegistrationService returnRegistrationService;
-        private readonly RentalSummaryGeneratorService rentalSummaryGeneratorService;
+        private readonly IReturnRegistrationService returnRegistrationService;
+        private readonly IRentalSummaryGeneratorService rentalSummaryGeneratorService;
         private IReturnRegistrationView view;
 
-        public ReturnRegistrationPresenter(ReturnRegistrationService returnRegistrationService, RentalSummaryGeneratorService rentalSummaryGeneratorService)
+        public ReturnRegistrationPresenter(IReturnRegistrationService returnRegistrationService, IRentalSummaryGeneratorService rentalSummaryGeneratorService)
         {
             this.returnRegistrationService = returnRegistrationService;
             this.rentalSummaryGeneratorService = rentalSummaryGeneratorService;
