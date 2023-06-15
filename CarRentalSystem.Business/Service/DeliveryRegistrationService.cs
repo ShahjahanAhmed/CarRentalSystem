@@ -1,11 +1,13 @@
 ﻿using CarRentalSystem.Business.Exception;
 using CarRentalSystem.Business.Model;
 using CarRentalSystem.Business.Repository;
+using NLog;
 
 namespace CarRentalSystem.Business.Service
 {
     internal class DeliveryRegistrationService : IDeliveryRegistrationService
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IPriceCalculationStrategyProvider priceCalculationStrategyProvider;
         private readonly IDeliveryRepository deliveryRepository;
 
@@ -24,6 +26,7 @@ namespace CarRentalSystem.Business.Service
                 throw new CategoryNotSupportedException(carCategory);
             }
 
+            logger.Debug($"Registering delivery with registration number {carRegistrationNumber}");
             var newCarDelivery = new CarDelivery(carRegistrationNumber)
             {
                 SocialSecurityNumber = socialSecurityNumber,
@@ -32,7 +35,10 @@ namespace CarRentalSystem.Business.Service
                 MeterReadingAtDelivery = currentMeterReading,
             };
 
-            return deliveryRepository.Create(newCarDelivery); ;
+            var registerCarDelivery = deliveryRepository.Create(newCarDelivery);
+            logger.Debug($"Registartion of delivery done with booking number {registerCarDelivery.BookingNumber}");
+
+            return registerCarDelivery; ;
         }
 
         public void UpdateCarDelivery(long bookingNumber, string carRegistrationNumber, string socialSecurityNumber,
@@ -50,6 +56,8 @@ namespace CarRentalSystem.Business.Service
                 throw new CategoryNotSupportedException(carCategory);
             }
 
+            logger.Debug($"Update delivery registration with booking number {bookingNumber}");
+
             carDelivery.CarCategory = carCategory;
             carDelivery.CarRegistration = carRegistrationNumber;
             carDelivery.MeterReadingAtDelivery = currentMeterReading;
@@ -57,6 +65,9 @@ namespace CarRentalSystem.Business.Service
             carDelivery.SocialSecurityNumber = socialSecurityNumber;
 
             deliveryRepository.Update(carDelivery);
+
+            logger.Debug($"Updating delivery registration with booking number {bookingNumber} is done.");
+
         }
     }
 }

@@ -4,13 +4,14 @@ using Spectre.Console;
 
 namespace CarRentalSystem.SampleConsoleApp.View
 {
-    internal class DeliveryRegistrationView : IView
+    internal class DeliveryRegistrationView : IDeliveryRegistrationView
     {
         private readonly IDeliveryRegistrationPresenter presenter;
 
         public DeliveryRegistrationView(IDeliveryRegistrationPresenter presenter)
         {
             this.presenter = presenter;
+            this.presenter.Bind(this);
         }
 
         public void Render()
@@ -31,14 +32,15 @@ namespace CarRentalSystem.SampleConsoleApp.View
             var pickupTime = AnsiConsole.Ask<DateTime>("Pickup time (yyyy'-'MM'-'dd'T'HH':'mm'): ");
             var currentMeterReading = AnsiConsole.Ask<int>("Current meter reading: ");
 
-            var registeredDelivery = presenter.RegisterDelivery(registration, socialSecurity, selectedCarCategory, pickupTime, currentMeterReading);
+            presenter.RegisterDelivery(registration, socialSecurity, selectedCarCategory, pickupTime, currentMeterReading);
 
-            RenderCarDeliveryRegistration(registeredDelivery);
-            AnsiConsole.MarkupLine($"[green]Car delivery registration successful! [/] ");
+        
         }
 
-        private static void RenderCarDeliveryRegistration(CarDelivery registeredDelivery)
+        public void RenderCarDeliveryRegistration(CarDelivery registeredDelivery)
         {
+            AnsiConsole.MarkupLine($"[green]Car delivery registration successful! [/] ");
+
             var table = new Table();
 
             table.AddColumn("Property");
@@ -52,6 +54,13 @@ namespace CarRentalSystem.SampleConsoleApp.View
             table.AddRow("Current meter reading", registeredDelivery.MeterReadingAtDelivery.ToString());
 
             AnsiConsole.Write(table);
+        }
+
+        public void ShowError(string message)
+        {
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"[bold red] {message} [/] ");
+            AnsiConsole.WriteLine();
         }
     }
 }

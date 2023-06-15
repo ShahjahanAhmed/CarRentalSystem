@@ -1,11 +1,12 @@
-﻿using CarRentalSystem.Business.Model;
+﻿using CarRentalSystem.SampleConsoleApp.View;
 
 namespace CarRentalSystem.SampleConsoleApp.Presenter;
 
 internal interface IDeliveryRegistrationPresenter
 {
-    CarDelivery RegisterDelivery(string carRegistrationNumber, string socialSecurityNumber, 
+    void RegisterDelivery(string carRegistrationNumber, string socialSecurityNumber, 
         string carCategory, DateTime pickupTime, int currentMeterReading);
 
     IReadOnlyCollection<string> SupportedCarCategories { get; }
+    void Bind(IDeliveryRegistrationView view);
 }
